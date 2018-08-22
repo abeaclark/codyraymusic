@@ -1,0 +1,16 @@
+{
+  "plugins": [
+    ["module-alias", [
+      { "src": "./src/components", "expose": "components" },
+      { "src": "./src/components/base", "expose": "baseComponents" },
+      { "src": "./src/components/hybrid", "expose": "hybridComponents" },
+      { "src": "./src/config", "expose": "config" },
+      { "src": "./src/layouts", "expose": "layouts" },
+      { "src": "./src/lib", "expose": "lib" },
+      { "src": "./src/pages", "expose": "pages" },
+      { "src": "./src/stories", "expose": "stories" },
+      { "src": "./src/themes", "expose": "themes" },
+      { "src": "./src/media", "expose": "media" }
+    ]]
+  ]
+}

@@ -1,0 +1,87 @@
+/* based on: https://github.com/jasonm23/markdown-css-themes/blob/gh-pages/avenir-white.css */
+.blog-post a {
+	/* should match the link style in applicationStyles*/
+    color: #212121;
+    text-decoration: none;
+    font-family: Nunito;
+    font-weight: 300;
+    border-bottom: 1px solid #BDBDBD;
+}
+
+.blog-post a:hover {
+	/* should match the link style in applicationStyles*/
+    color: #BDBDBD;
+}
+
+.blog-post {
+	font-family: "Nunito", Arial, sans-serif;
+	padding-bottom: 40px;
+}
+
+.blog-post h1, h2, h3, h4, h5, h6 {
+	font-family: "Nunito", Arial, sans-serif;
+	font-weight: bold;
+}
+
+.blog-post h1 {
+	color: #000000;
+	font-size: 28pt;
+}
+
+.blog-post h2 {
+	color: #000000;
+	font-size: 24px;
+	line-height: 40px;
+	margin-top: 30px;
+}
+
+.blog-post h3 {
+	font-size: 18px;
+}
+
+.blog-post h4 {
+	font-size: 16px;
+}
+
+.blog-post h5 {
+	font-size: 14px;
+}
+
+.blog-post h6 {
+	color: #777777;
+	background-color: inherit;
+	font-size: 14px;
+}
+
+.blog-post hr {
+	height: 1px;
+	border: 0;
+	color: #CCCCCC;
+	background-color: #CCCCCC;
+}
+
+.blog-post p, blockquote, ul, ol, dl, li, table, pre {
+	font-family: "Nunito", Arial, sans-serif;
+	margin: 15px 0;
+	line-height: 1.7em;
+}
+
+.blog-post img {
+	max-width: 100%;
+}
+
+.blog-post table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+.blog-post table, th, td {
+	border: 1px solid #EAEAEA;
+	
+	border-radius: 3px;
+	padding: 5px;
+}
+
+.blog-post span, a, strong {
+	font-family: "Nunito", Arial, sans-serif;
+}

@@ -1,0 +1,41 @@
+{
+  "name": "codyraymusic",
+  "description": "cody-ray-music",
+  "version": "1.0.0",
+  "author": "Abe Clark",
+  "dependencies": {
+    "axios": "^0.16.2",
+    "babel-plugin-module-alias": "^1.6.0",
+    "gatsby": "^1.6.5",
+    "gatsby-link": "^1.6.5",
+    "gatsby-plugin-facebook-pixel": "^1.0.3",
+    "gatsby-plugin-glamor": "^1.6.3",
+    "gatsby-plugin-google-analytics": "^1.0.3",
+    "gatsby-plugin-jss": "^1.5.6",
+    "gatsby-plugin-react-helmet": "^1.0.1",
+    "gatsby-plugin-sass": "^1.0.3",
+    "gatsby-plugin-sitemap": "^1.2.5",
+    "gatsby-source-filesystem": "^1.4.2",
+    "gatsby-transformer-remark": "^1.7.0",
+    "js-cookie": "^2.1.4",
+    "parse-filepath": "^1.0.1",
+    "react-dom": "^15.6.1",
+    "react-icons": "^2.2.5",
+    "unist-util-select": "^1.5.0"
+  },
+  "keywords": [
+    "gatsby"
+  ],
+  "license": "MIT",
+  "main": "n/a",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "format": "prettier --trailing-comma es5 --no-semi --single-quote --write 'src/**/*.js'",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "storybook": "start-storybook -p 9001 -c .storybook"
+  },
+  "devDependencies": {
+    "prettier": "^1.5.2"
+  }
+}

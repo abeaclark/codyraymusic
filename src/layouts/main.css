@@ -1,0 +1,6 @@
+@import url(https://fonts.googleapis.com/css?family=Josefin+Sans:100,400,700|Nunito:300,600);
+
+* {
+	box-sizing: border-box;	
+	font-family: "Josefin Sans", sans-serif;
+}
