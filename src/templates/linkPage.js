@@ -86,6 +86,7 @@ export const pageQuery = graphql`
           soundcloudLink
           googlePlayLink
           amazonMusicLink
+          mailchimpURL
         }
       }
     }
