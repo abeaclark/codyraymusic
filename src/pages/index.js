@@ -123,7 +123,16 @@ const retailerStyles = {
     maxWidth: '90px',
     maxHeight: '50px',
   },
-} 
+}
+
+const emailSignupStyles = {
+  statusText: {
+    textAlign: 'center',
+    margin: '5px 0px',
+    color: colors.grey,
+    fontSize: '14px',
+  }
+}
 
 const Retailer = ({logo, url, text}) => {
   return (
@@ -145,12 +154,29 @@ const Retailer = ({logo, url, text}) => {
 // Error: Timeout
 const SubscribeForm = ({ url, status, message, onValidated }) => {
   let email, name;
-  const submit = () =>
-    email && name && email.value.indexOf("@") > -1 &&
+  const submit = () => {
+    email && email.value.indexOf("@") > -1 &&
     onValidated({
       EMAIL: email.value,
-      NAME: name.value
     })
+  }
+
+  let display = <div/>
+  if (status === 'error') {
+    if (message === "Error: Timeout") {
+      display = <div css={emailSignupStyles.statusText}>There was an error subscribing. Please try again later.</div>
+    } else {
+      display = <div css={emailSignupStyles.statusText}>You're already subscrbied. Invite a friend to subscribe!</div>
+    }
+  }
+
+  if (status === 'success') {
+    display = <div css={emailSignupStyles.statusText}>Got it! Expect the track in your inbox shortly</div>
+  }
+
+  if (status === 'sending') {
+    display = <div css={emailSignupStyles.statusText}>Adding you to the list...</div>
+  }
 
   return (
     <div
@@ -171,25 +197,20 @@ const SubscribeForm = ({ url, status, message, onValidated }) => {
       <p css={{ textAlign: 'center' }}>
         Subscribe to get the lastest tracks & videos
       </p>
-      {status === "sending" && <div style={{ color: "blue" }}>sending...</div>}
-      {status === "error" && (
-        <div
-          style={{ color: "red" }}
-          dangerouslySetInnerHTML={{ __html: message }}
-        />
-      )}
-      {status === "success" && (
-        <div
-          style={{ color: "green" }}
-          dangerouslySetInnerHTML={{ __html: message }}
-        />
-      )}
+      {display}
       <input
         style={{ fontSize: "1.5em", padding: '10px', width: "300px", borderRadius: '5px', border: 0 }}
         ref={node => (email = node)}
         type="email"
         placeholder="your@email.here"
-        autofocus="true"
+        autoFocus="true"
+      />
+      <input
+        style={{ display: 'none' }}
+        type="text"
+        name="SIGNUP"
+        id="SIGNUP"
+        value="*|SIGNUP|*"
       />
       <br />
       <Button
@@ -198,7 +219,7 @@ const SubscribeForm = ({ url, status, message, onValidated }) => {
       >
         Follow The Rise
       </Button>
-      <p css={{ color: colors.grey, fontSize: '12px' }}>
+      <p css={{ color: colors.grey, fontSize: '12px', textAlign: 'center' }}>
         By clicking, you agree to subscribe to updates from CodyRayMusic
       </p>
     </div>
@@ -212,14 +233,15 @@ const SubscribeElement = ({ url }) => (
       <SubscribeForm
         status={status}
         message={message}
-        onValidated={formData => subscribe(formData)}
+        onValidated={formData => {
+          subscribe(formData)
+        }}
       />
     )}
   />
 )
 
 export const Post = ({ data, shouldLink=false} ) => {
-  console.log(data)
   const frontmatter = data.frontmatter
 
   const retailers = [
@@ -263,7 +285,7 @@ export const Post = ({ data, shouldLink=false} ) => {
         allow="autoplay; encrypted-media"
         allowfullscreen=""
         key={size.width}
-        style={{border: 0, zIndex: 2 }}
+        style={{border: 0, zIndex: 20 }}
       >
       </iframe>
       </div>
@@ -280,7 +302,7 @@ export const Post = ({ data, shouldLink=false} ) => {
       }
       {frontmatter.mailchimpURL &&
         <SubscribeElement
-          url={frontmatter.mailchimpURL}
+          url={frontmatter.mailchimpURL + `&SIGNUP=${frontmatter.path}`}
         />
       }
       {renderRetailers()}

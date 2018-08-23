@@ -11,5 +11,7 @@ youTubeLink: "https://www.youtube.com/watch?v=qCFkD_RBQCk"
 soundcloudLink: "https://soundcloud.com/cody_ray_music/sets/take-your-broke-ass-home"
 googlePlayLink: "https://play.google.com/store/music/album/Cody_Ray_Take_Your_Broke_Ass_Home?id=Bfq73rnrz54x6gbvqljsk4lephe"
 amazonMusicLink: "https://www.amazon.com/dp/B07CGPY7NM/ref=cm_sw_r_cp_ep_dp_CjN3AbATSK04W?tag=smarturl-20"
-mailchimpURL: "test"
+mailchimpURL: "https://codyraymusic.us18.list-manage.com/subscribe/post?u=4cd414c7953819aa309bb2fd9&amp;id=dd80d2e2b4"
 ---
+
+
