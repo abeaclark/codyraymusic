@@ -34,10 +34,6 @@ const styles = {
     fontFamily: 'josfin sans',
     fontWeight: 'normal !important',
   },
-  textHolder: {
-    position: 'absolute',
-    padding: 20,
-  },
   image: {
     maxHeight: '180px',
     marginTop: "30px",
@@ -49,7 +45,7 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: colors.lightGrey,
-    zIndex: -1,
+    zIndex: 1,
   },
   youtubeSmall: {
     display: "block",
@@ -281,21 +277,21 @@ export const Post = ({ data, shouldLink=false} ) => {
   const youtubeElements = youtubeSizes.map(size => {
     const currentStyle = styles[`youtube${size.style}`]
     return (
-      <div css={currentStyle}>
-      <div css={styles.spinnerHolder}>
-        <Spinner name="line-scale-pulse-out-rapid" color={colors.green} />
-      </div>
-      <iframe
-        width={size.width}
-        height={size.height}
-        src={`https://www.youtube.com/embed/${frontmatter.videoId}`}
-        frameborder="0"
-        allow="autoplay; encrypted-media"
-        allowfullscreen=""
-        key={size.width}
-        style={{border: 0, zIndex: 20 }}
-      >
-      </iframe>
+      <div css={currentStyle} key={size.width}>
+        <div css={styles.spinnerHolder}>
+          <Spinner name="line-scale-pulse-out-rapid" color={colors.green} />
+        </div>
+        <iframe
+          width={size.width}
+          height={size.height}
+          src={`https://www.youtube.com/embed/${frontmatter.videoId}`}
+          allowfullscreen="true"
+          style={{
+            border: 0,
+            zIndex: 20,
+          }}
+        >
+        </iframe>
       </div>
     )
   })
