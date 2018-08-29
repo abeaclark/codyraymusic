@@ -22,13 +22,13 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: ``,
+        trackingId: `UA-102594910-1`,
       },
     },
     {
       resolve: `gatsby-plugin-facebook-pixel`,
       options: {
-        pixelId: '',
+        pixelId: '145516182783891',
       },
     },
   ],

@@ -12,6 +12,7 @@ import presets from 'lib/presets'
 import MailchimpSubscribe from "react-mailchimp-subscribe"
 import Spinner from 'react-spinkit'
 import Button from 'components/base/button'
+import Analytics from 'lib/googleAnalytics'
 
 const styles = {
   outer: {
@@ -97,6 +98,7 @@ const retailerStyles = {
     flexDirection: 'row',
     cursor: 'pointer',
     borderBottom: '0 !important',
+    textDecoration: 'none',
   },
   logoContainer: {
     height: '75px',
@@ -134,11 +136,15 @@ const emailSignupStyles = {
   }
 }
 
-const Retailer = ({logo, url, text}) => {
+const Retailer = ({logo, link, text, linkKey, page}) => {
   return (
     <a
-      href={url}
+      href={link}
       css={retailerStyles.container}
+      onClick={() => {
+        Analytics.click({ target: linkKey, page: page })
+      }}
+      target="_blank"
     >
       <div css={retailerStyles.logoContainer}>
         <img css={retailerStyles.logo} src={logo} />
@@ -152,7 +158,7 @@ const Retailer = ({logo, url, text}) => {
 
 
 // Error: Timeout
-const SubscribeForm = ({ url, status, message, onValidated }) => {
+const SubscribeForm = ({ url, status, message, onValidated, title }) => {
   let email, name;
   const submit = () => {
     email && email.value.indexOf("@") > -1 &&
@@ -226,7 +232,7 @@ const SubscribeForm = ({ url, status, message, onValidated }) => {
   )
 }
 
-const SubscribeElement = ({ url }) => (
+const SubscribeElement = ({ url, title, page }) => (
   <MailchimpSubscribe
     url={url}
     render={({ subscribe, status, message }) => (
@@ -235,7 +241,9 @@ const SubscribeElement = ({ url }) => (
         message={message}
         onValidated={formData => {
           subscribe(formData)
+          Analytics.subscribe({ target: `Subscribe for free track`, page: page, email: formData.EMAIL })
         }}
+        title={title}
       />
     )}
   />
@@ -245,13 +253,13 @@ export const Post = ({ data, shouldLink=false} ) => {
   const frontmatter = data.frontmatter
 
   const retailers = [
+    {logo: spotify, linkKey: "spotifyLink", text: "Listen"},
+    {logo: applemusic, linkKey: "appleMusicLink", text: "Listen"},
+    {logo: itunes, linkKey: "iTunesLink", text: "Buy"},
+    {logo: youtube, linkKey: "youTubeLink", text: "Listen"},
     {logo: soundcloud, linkKey: "soundcloudLink", text: "Listen"},
     {logo: amazonmusic, linkKey: "amazonMusicLink", text: "Buy"},
-    {logo: applemusic, linkKey: "appleMusicLink", text: "Listen"},
     {logo: googleplay, linkKey: "googlePlayLink", text: "Buy"},
-    {logo: spotify, linkKey: "spotifyLink", text: "Listen"},
-    {logo: youtube, linkKey: "youTubeLink", text: "Listen"},
-    {logo: itunes, linkKey: "iTunesLink", text: "Buy"},
   ]
   
   const renderRetailers = () => {
@@ -260,7 +268,7 @@ export const Post = ({ data, shouldLink=false} ) => {
       if (!link) {
         return null
       }
-      return <Retailer {...retailer} link={link} key={link} />
+      return <Retailer {...retailer} link={link} key={link} page={frontmatter.path} />
     })
   }
 
@@ -303,6 +311,8 @@ export const Post = ({ data, shouldLink=false} ) => {
       {frontmatter.mailchimpURL &&
         <SubscribeElement
           url={frontmatter.mailchimpURL + `&SIGNUP=${frontmatter.path}`}
+          title={data.frontmatter.title}
+          page={data.frontmatter.path}
         />
       }
       {renderRetailers()}
@@ -320,7 +330,6 @@ class Blog extends React.Component {
     const postList = allMarkdownRemark.edges.map(({ node }) => Post({data: node, shouldLink: true}))
     return (
       <div css={applicationStyles.outer} >
-        <Header />
         <div css={{...styles.outer }}>
            {postList}
         </div>
