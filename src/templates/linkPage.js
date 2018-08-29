@@ -25,7 +25,7 @@ class LinkPageTemplate extends React.Component {
           <MainHelmet
             description={post.excerpt}
             title={`${post.frontmatter.title} | CodyRayMusic`}
-            image={post.frontmatter.image}
+            image={BASE_URL + post.frontmatter.image}
             script={{
               "type": "application/ld+json",
               "innerHTML": `{
@@ -34,7 +34,7 @@ class LinkPageTemplate extends React.Component {
                 "@id": BASE_URL + post.frontmatter.path,
                 "url": BASE_URL + post.frontmatter.path,
                 "headline": post.frontmatter.title,
-                "description": post.excerpt,
+                "description": post.excerpt || "Get this track in your inbox or on your favorite client!",
                 "image": BASE_URL + post.frontmatter.image,
                 "author": {
                   "@type": "Organization",
