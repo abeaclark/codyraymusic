@@ -15,6 +15,6 @@ export default {
   },
   lead: ({ target, page, link, email }) => {
     GA('lead', {target, page, link, email, content_name: target, content_category: page})
-    FB.subscribe({ target, page, link, email, content_name: target, content_category: page})
+    FB.lead({ target, page, link, email, content_name: target, content_category: page})
   },
 }
