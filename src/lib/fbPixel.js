@@ -8,5 +8,5 @@ const fireEventOrLog = (track, eventName, data={}) => {
 
 export default {
   click: ({ target, page, link }) => fireEventOrLog('track', 'click', { target, page, link }),
-  subscribe: ({ target, page, link, email }) => fireEventOrLog('track', 'subscribe', { target, page, link, email })
+  lead: ({ target, page, link, email }) => fireEventOrLog('track', 'Lead', { target, page, link, em: email })
 }

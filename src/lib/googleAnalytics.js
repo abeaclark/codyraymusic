@@ -13,8 +13,8 @@ export default {
     GA('click', {target, page, link})
     FB.click({ target, page, link })
   },
-  subscribe: ({ target, page, link, email }) => {
-    GA('subscribe', {target, page, link, email})
-    FB.subscribe({ target, page, link, email })
+  lead: ({ target, page, link, email }) => {
+    GA('lead', {target, page, link, email, content_name: target, content_category: page})
+    FB.subscribe({ target, page, link, email, content_name: target, content_category: page})
   },
 }

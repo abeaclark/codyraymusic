@@ -7,8 +7,8 @@ const styles = {
   outer: {
     width: "100%",
     maxWidth: metrics.maxWidth,
-    paddingTop: "30px",
-    paddingBottom: "30px",
+    paddingTop: "10px",
+    paddingBottom: "10px",
     textAlign: "center",
     color: colors.darkGrey,
     textDecoration: 'none',

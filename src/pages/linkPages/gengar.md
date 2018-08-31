@@ -1,5 +1,5 @@
 ---
-title: Gengar
+title: Gengar - Cody Ray
 date: "2018-08-22"
 path: "/gengar/"
 image: "/media/gengar-cover.jpg"

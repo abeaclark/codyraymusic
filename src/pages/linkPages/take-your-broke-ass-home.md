@@ -1,5 +1,5 @@
 ---
-title: Take Your Broke Ass Home
+title: Take Your Broke Ass Home - Cody Ray
 date: "2018-01-05"
 path: "/take-your-broke-ass-home/"
 image: "/media/take-your-broke-ass-home-cover.jpg"

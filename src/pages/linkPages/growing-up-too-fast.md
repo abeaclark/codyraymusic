@@ -1,5 +1,5 @@
 ---
-title: Growing Up Too Fast
+title: Growing Up Too Fast - Cody Ray
 date: "2018-02-01"
 path: "/growing-up-too-fast/"
 image: "/media/growing-up-too-fast-cover.jpg"

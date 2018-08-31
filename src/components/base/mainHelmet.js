@@ -1,9 +1,9 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 
-const defaultDescription = "Cody Ray Description"
-const defaultTitle = "Cody Ray Title"
-const defaultImage = "Hills"
+const defaultDescription = "Rap artist Cody Ray is an California-based musician. Follow the Rise."
+const defaultTitle = "Cody Ray Music"
+const defaultImage = "https://links.codyraymusic.com/media/cody-ray.jpg"
 const defaultKeywords = 'Keywords'
 
 const mainScript={
