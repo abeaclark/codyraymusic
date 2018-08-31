@@ -237,7 +237,7 @@ const SubscribeElement = ({ url, title, page }) => (
         message={message}
         onValidated={formData => {
           subscribe(formData)
-          Analytics.subscribe({ target: `Subscribe for free track`, page: page, email: formData.EMAIL })
+          Analytics.lead({ target: `Subscribe for free track`, page: page, email: formData.EMAIL })
         }}
         title={title}
       />
