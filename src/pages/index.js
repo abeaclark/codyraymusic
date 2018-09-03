@@ -36,8 +36,12 @@ const styles = {
   },
   image: {
     maxHeight: '180px',
-    marginTop: "30px",
-    marginBottom: "30px",
+    marginTop: "10px",
+    marginBottom: "10px",
+    [presets.Mobile]: {
+      marginTop: "15px",
+      marginBottom: "15px",
+    },
   },
   youtubeContainer: {
     display: 'flex',
@@ -61,16 +65,6 @@ const styles = {
     display: "none",
     position: 'relative',
     [presets.Tablet]: {
-      display: "block",
-    },
-    [presets.Desktop]: {
-      display: "none",
-    },
-  },
-  youtubeLarge: {
-    position: 'relative',
-    display: "none",
-    [presets.Desktop]: {
       display: "block",
     },
   },
@@ -97,7 +91,7 @@ const retailerStyles = {
     textDecoration: 'none',
   },
   logoContainer: {
-    height: '75px',
+    height: '65px',
     width: '200px',
     display: 'flex',
     alignItems: 'center',
@@ -119,7 +113,7 @@ const retailerStyles = {
   },
   logo: {
     maxWidth: '90px',
-    maxHeight: '50px',
+    maxHeight: '40px',
   },
 }
 
@@ -129,6 +123,69 @@ const emailSignupStyles = {
     margin: '5px 0px',
     color: colors.grey,
     fontSize: '14px',
+  },
+  title: {
+    marginTop: '0px',
+    marginBottom: '0px',
+    textAlign: 'center',
+    fontSize: '16px !important',
+    [presets.Mobile]: {
+      fontSize: "20px !important",
+    }  
+  },
+  disclaimer: {
+    color: colors.grey,
+    textAlign: 'center',
+    fontSize: '8px !important',
+    padding: '0 !important',
+    margin: '5px !important',
+    [presets.Mobile]: {
+      fontSize: "12px !important",
+    }
+  },
+  subscribeText: {
+    textAlign: 'center',
+    fontSize: '10px',
+    [presets.Mobile]: {
+      fontSize: "12px !important",
+    }
+  },
+  background: {
+    display: "flex",
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: colors.lightGrey,
+    width: '100vw',
+    padding: '5px',
+    margin: '5px',
+    [presets.Mobile]: {
+      padding: '20px',
+      margin: '20px',
+    }
+  },
+  button: {
+    fontSize: "1em",
+    width: '300px',
+    backgroundColor: colors.green,
+    margin: '0px',
+    padding: "10px",
+    [presets.Mobile]: {
+      margin: '10px',
+      padding: "15px",
+    }
+  },
+  input: {
+    width: "300px",
+    borderRadius: '5px',
+    border: 0,
+    padding: '5px',
+    fontSize: "1em",
+    textAlign: 'center',
+    [presets.Mobile]: {
+      padding: '10px',
+      fontSize: "1.5em",
+    }
   }
 }
 
@@ -182,26 +239,17 @@ const SubscribeForm = ({ url, status, message, onValidated, title }) => {
 
   return (
     <div
-      css={{
-        display: "flex",
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: colors.lightGrey,
-        width: '100vw',
-        padding: '30px',
-        margin: '30px',
-      }}
+      css={emailSignupStyles.background}
     >
-      <h1 css={{ marginTop: '0px', marginBottom: '0px', textAlign: 'center'}}>
-        Get this track in your inbox
+      <h1 css={emailSignupStyles.title}>
+        Get this song in your inbox
       </h1>
-      <p css={{ textAlign: 'center' }}>
+      <p css={emailSignupStyles.subscribeText}>
         Subscribe to get the lastest tracks & videos
       </p>
       {display}
       <input
-        style={{ fontSize: "1.5em", padding: '10px', width: "300px", borderRadius: '5px', border: 0 }}
+        style={emailSignupStyles.input}
         ref={node => (email = node)}
         type="email"
         placeholder="your@email.here"
@@ -216,12 +264,12 @@ const SubscribeForm = ({ url, status, message, onValidated, title }) => {
       />
       <br />
       <Button
-        style={{ fontSize: "1em", padding: "15px", width: '300px', backgroundColor: colors.green, margin: '10px' }}
+        style={emailSignupStyles.button}
         onClick={submit}
       >
         Follow The Rise
       </Button>
-      <p css={{ color: colors.grey, fontSize: '12px', textAlign: 'center' }}>
+      <p css={emailSignupStyles.disclaimer}>
         By clicking, you agree to subscribe to updates from CodyRayMusic
       </p>
     </div>
@@ -264,14 +312,13 @@ export const Post = ({ data, shouldLink=false} ) => {
       if (!link) {
         return null
       }
-      return <Retailer {...retailer} link={link} key={link} page={frontmatter.path} />
+      return <Retailer {...retailer} link={link} key={retailer.linkKey} page={frontmatter.path} />
     })
   }
 
   const youtubeSizes = [
-    {width: "400", height: "200", style: "Small"},
-    {width: "628", height: "350", style: "Medium"},
-    {width: "800", height: "450", style: "Large"},
+    {width: "320", height: "150", style: "Small"},
+    {width: "628", height: "300", style: "Medium"},
   ]
 
   const youtubeElements = youtubeSizes.map(size => {
@@ -296,14 +343,25 @@ export const Post = ({ data, shouldLink=false} ) => {
     )
   })
 
+  const coverArt = <img css={styles.image} src={frontmatter.image} />
+  const mainContent = () => {
+    if (frontmatter.videoId) {
+      return <div css={styles.youtubeContainer}> {youtubeElements}</div>
+    }
+    if (frontmatter.image) {
+      return coverArt
+    } 
+    return <div></div>
+  }
+
+  const content = mainContent()
+  // only show cover art at end if not already above
+  const endContent = content == coverArt ? null : coverArt
+
   return(
     <div css={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start' }}>
       <Header title={data.frontmatter.title}/>
-      {frontmatter.videoId &&
-        <div css={styles.youtubeContainer}>
-          {youtubeElements}
-        </div>
-      }
+      {content}
       {frontmatter.mailchimpURL &&
         <SubscribeElement
           url={frontmatter.mailchimpURL + `&SIGNUP=${frontmatter.path}`}
@@ -312,9 +370,7 @@ export const Post = ({ data, shouldLink=false} ) => {
         />
       }
       {renderRetailers()}
-      {frontmatter.image && 
-        <img css={styles.image} src={frontmatter.image} />
-      }
+      {endContent}
     </div>
   )
 }

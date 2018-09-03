@@ -12,23 +12,23 @@ const styles = {
     textAlign: "center",
     color: colors.darkGrey,
     textDecoration: 'none',
-    fontSize: '30px',
     fontFamily: 'Josefin Sans !important',
     fontWeight: 'normal !important',
     border: '0px !important',
-    [presets.mobile]: {
-      fontSize: "48px",
+    fontSize: '15px',
+    [presets.Mobile]: {
+      fontSize: "25px !important",
     }
   },
 }
 
 
 const Header = ({title}) =>
-  <h1
-    css={{...styles.outer }}
+  <div
+    css={styles.outer}
     to="/"
   >
     {title}
-  </h1>
+  </div>
 
 export default Header
