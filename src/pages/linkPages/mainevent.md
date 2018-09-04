@@ -1,4 +1,4 @@
-# New Document---
+---
 title: Main Event - Cody Ray
 date: "2018-09-04"
 path: "/mainevent/"
