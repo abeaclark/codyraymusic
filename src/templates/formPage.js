@@ -2,22 +2,14 @@ import React from 'react'
 import { applicationStyles } from 'themes'
 import MainHelmet from 'components/base/mainHelmet'
 import './avenir-white.css'
-import { Post } from 'pages/index'
+import { FormPage } from 'components/formPage'
 
-const styles = {
-  image: {
-    width: '100%',
-    maxWidth: 500,
-    border: '0px',
-  },
-}
 
 const BASE_URL = "https://links.codyraymusic.com"
 
 
 class LinkPageTemplate extends React.Component {
   render() {
-    console.log(this.props)
     const post = this.props.data.markdownRemark
 
     return (
@@ -35,7 +27,7 @@ class LinkPageTemplate extends React.Component {
                 "@id": BASE_URL + post.frontmatter.path,
                 "url": BASE_URL + post.frontmatter.path,
                 "headline": post.frontmatter.title,
-                "description": post.excerpt || "Get this track in your inbox or on your favorite client!",
+                "description": post.excerpt || "Subscribe for the latest songs, videos, and more",
                 "image": BASE_URL + post.frontmatter.image,
                 "author": {
                   "@type": "Organization",
@@ -53,7 +45,7 @@ class LinkPageTemplate extends React.Component {
               }`
             }}
           />
-          { Post({ data: post }) }
+          { FormPage({ data: post }) }
           <div dangerouslySetInnerHTML={{ __html: post.html }} />
         </div>
       </div>
@@ -61,34 +53,28 @@ class LinkPageTemplate extends React.Component {
   }
 }
 
-export default LinkPageTemplate
 
 export const pageQuery = graphql`
-  query SingleLinkPage($path: String!) {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-      markdownRemark(frontmatter: { path: { eq: $path } }) {
-        id
-        html
-        excerpt
-        frontmatter {
-          title
-          image
-          date(formatString: "M.D.YYYY")
-          path
-          videoId
-          spotifyLink
-          appleMusicLink
-          iTunesLink
-          youTubeLink
-          soundcloudLink
-          googlePlayLink
-          amazonMusicLink
-          mailchimpURL
-        }
+  query SingleFormPage($path: String!) {
+    site {
+      siteMetadata {
+        title
       }
     }
-  `
+    markdownRemark(frontmatter: { path: { eq: $path } }) {
+      id
+      html
+      excerpt
+      frontmatter {
+        title
+        subtitle
+        disclaimer
+        buttonText
+        date(formatString: "M.D.YYYY")
+        path
+        mailchimpURL
+      }
+    }
+  }`
+
+export default LinkPageTemplate

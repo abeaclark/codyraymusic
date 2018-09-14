@@ -11,6 +11,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
   return new Promise((resolve, reject) => {
     const pages = []
     const linkPageTemplate = path.resolve("./src/templates/linkPage.js")
+    const formPageTemplate = path.resolve("./src/templates/formPage.js")
     resolve(
       graphql(
         `{
@@ -19,6 +20,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
             node {
               fields {
                 slug
+                fileType
               }
             }
           }
@@ -36,9 +38,10 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
           console.log(edge)
           createPage({
             path: edge.node.fields.slug,
-            component: linkPageTemplate,
+            component: edge.node.fields.fileType === 'linkPages' ? linkPageTemplate : formPageTemplate,
             context: {
               slug: edge.node.fields.slug,
+              fileType: edge.node.fields.fileType,
             },
           })
         })
@@ -58,10 +61,9 @@ exports.onCreateNode = ({ node, boundActionCreators, getNode }) => {
     const fileNode = getNode(node.parent)
     const parsedFilePath = parseFilepath(fileNode.relativePath)
     // add slugs for linkPages
-    if (parsedFilePath.dir != 's') {
-      slug = `/${parsedFilePath.name}/`
-    }
-
+    slug = `/${parsedFilePath.name}/`
+    const fileType = parsedFilePath.dir
     createNodeField({ node, name: `slug`, value: slug })
+    createNodeField({ node, name: `fileType`, value: fileType })
   }
 }

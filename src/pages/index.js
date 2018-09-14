@@ -22,6 +22,7 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'center',
     alignSelf: 'stretch',
+    padding: '10px',
   },
   postContainer: {
     width: '100%',
@@ -378,12 +379,10 @@ export const Post = ({ data, shouldLink=false} ) => {
 
 class Blog extends React.Component {
   render() {
-    const { allMarkdownRemark } = this.props.data
-    const postList = allMarkdownRemark.edges.map(({ node }) => Post({data: node, shouldLink: true}))
     return (
       <div css={applicationStyles.outer} >
         <div css={{...styles.outer }}>
-           {postList}
+           "CODY RAY MUSIC"
         </div>
       </div>
     )
@@ -392,34 +391,3 @@ class Blog extends React.Component {
   
 
 export default Blog
-
-export const pageQuery = graphql`
-  query LinkPagesIndexQuery {
-    allMarkdownRemark(
-      sort: { order: DESC, fields: [frontmatter___date] }
-    ) {
-      edges {
-        node {
-          excerpt
-          frontmatter {
-            path
-            date(formatString: "M.D.YYYY")
-          }
-          frontmatter {
-            title
-            image
-            videoId
-            spotifyLink
-            appleMusicLink
-            iTunesLink
-            youTubeLink
-            soundcloudLink
-            googlePlayLink
-            amazonMusicLink
-            mailchimpURL
-          }
-        }
-      }
-    }
-  }
-`

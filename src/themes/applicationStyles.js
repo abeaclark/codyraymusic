@@ -12,10 +12,8 @@ export default {
     },
     mainTextContainer: {
         // ...fontFamilies.comfortaa,
-        maxWidth: 800,
-        padding: 10,
         // TODO: sort this out. 90% is a hack
-        width: '90%',
+        width: '100%',
         margin: '0 auto',
         alignSelf: 'stretch',
         display: 'flex',
