@@ -70,6 +70,7 @@ export const pageQuery = graphql`
         subtitle
         disclaimer
         buttonText
+        image
         date(formatString: "M.D.YYYY")
         path
         mailchimpURL

@@ -6,6 +6,15 @@ import Button from 'components/base/button'
 import Analytics from 'lib/googleAnalytics'
 
 const emailSignupStyles = {
+  image: {
+    maxHeight: '100px',
+    marginTop: "10px",
+    marginBottom: "10px",
+    [presets.Mobile]: {
+    maxHeight: '180px',
+      marginBottom: "30px",
+    },
+  },
   outer: {
     padding: 0, 
     minHeight: '100vh',
@@ -98,14 +107,14 @@ const emailSignupStyles = {
 
 // Error: Timeout
 const SubscribeForm = ({ url, status, message, onValidated, ...otherProps }) => {
-  const { title, subtitle, buttonText, disclaimer } = otherProps.data.frontmatter
-  let email, name;
+  const { title, subtitle, buttonText, disclaimer, image } = otherProps.data.frontmatter
+  let email, firstName, lastName
   const submit = () => {
     email && email.value.indexOf("@") > -1 &&
     onValidated({
       EMAIL: email.value,
       FNAME: firstName.value,
-      FNAME: lastName.value,
+      LNAME: lastName.value,
     })
   }
 
@@ -131,6 +140,9 @@ const SubscribeForm = ({ url, status, message, onValidated, ...otherProps }) => 
       <div
         css={emailSignupStyles.background}
       >
+        {image &&
+          <img css={emailSignupStyles.image} src={image} />
+        }
         { title && 
           <h1 css={emailSignupStyles.title}>
             {title}
@@ -192,7 +204,7 @@ const SubscribeElement = ({ url, ...otherProps }) => (
         message={message}
         onValidated={formData => {
           subscribe(formData)
-          Analytics.lead({ target: `Subscribe for free track`, page: page, email: formData.EMAIL })
+          Analytics.lead({ target: `Subscribe for free track`, page: otherProps.path, email: formData.EMAIL, firstName: formData.FNAME, lastName: formData.LNAME })
         }}
         {...otherProps}
       />

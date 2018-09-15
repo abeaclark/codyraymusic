@@ -13,8 +13,8 @@ export default {
     GA('click', {target, page, link})
     FB.click({ target, page, link })
   },
-  lead: ({ target, page, link, email }) => {
-    GA('lead', {target, page, link, email, content_name: target, content_category: page})
-    FB.lead({ target, page, link, email, content_name: target, content_category: page})
+  lead: ({ target, page, link, email, firstName, lastName }) => {
+    GA('lead', {target, page, link, email, content_name: target, content_category: page, firstName, lastName})
+    FB.lead({ target, page, link, email, content_name: target, content_category: page, firstName, lastName})
   },
 }
