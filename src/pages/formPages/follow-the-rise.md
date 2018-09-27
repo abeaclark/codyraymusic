@@ -1,5 +1,5 @@
 ---
-title: "Follow the Rise"
+title: "#FollowTheRise"
 subtitle: "Be the first to hear my new music when it drops"
 buttonText: "Subscribe"
 disclaimer: "By clicking, you agree to subscribe to updates from CodyRayMusic"
