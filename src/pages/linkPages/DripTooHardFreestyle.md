@@ -1,5 +1,5 @@
 ---
-title: Cody Ray - Drip Too Hard Freestyle
+title: Drip Too Hard Freestyle - Cody Ray
 date: "2018-01-05"
 path: "/drip-too-hard-freestyle/"
 image: "/media/DripTooHardFeestyleArtwork.jpg"
