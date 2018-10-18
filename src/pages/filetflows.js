@@ -37,11 +37,11 @@ class FiletFlows extends React.Component {
               "innerHTML": `{
                 "@context": "http://schema.org",
                 "@type": "BlogPosting",
-                "@id": ${BASE_URL + PATH},
-                "url": ${BASE_URL + PATH},
+                "@id": "${BASE_URL + PATH}",
+                "url": "${BASE_URL + PATH}",
                 "headline": "Filet Flows | Spotify Playlist",
-                "description": ${DESCRIPTION},
-                "image": ${BASE_URL + IMAGE},
+                "description": "${DESCRIPTION}",
+                "image": "${BASE_URL + IMAGE}",
                 "author": {
                   "@type": "Organization",
                   "name": "CodyRayMusic"
@@ -50,7 +50,7 @@ class FiletFlows extends React.Component {
                   "@type": "Organization",
                   "name": "CodyRayMusic",
                   "logo": {
-                    "url": ${BASE_URL + "/android-icon-144x144.png"},
+                    "url": "${BASE_URL + "/android-icon-144x144.png"}",
                     "type": "ImageObject"
                   }
                 }
