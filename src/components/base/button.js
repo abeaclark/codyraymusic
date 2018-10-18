@@ -37,6 +37,6 @@ export default ({ children, style, to, onClick }) => {
       </Link>
     )
   } else {
-    return <span>{button}</span>
+    return button
   }
 }
