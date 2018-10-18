@@ -7,11 +7,11 @@ import Analytics from 'lib/googleAnalytics'
 
 const emailSignupStyles = {
   image: {
-    maxHeight: '100px',
+    maxWidth: '100%',
     marginTop: "10px",
     marginBottom: "10px",
     [presets.Mobile]: {
-    maxHeight: '180px',
+      maxHeight: '300px',
       marginBottom: "30px",
     },
   },
