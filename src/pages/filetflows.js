@@ -31,7 +31,7 @@ class FiletFlows extends React.Component {
         <MainHelmet
             description={DESCRIPTION}
             title={TITLE}
-            image={IMAGE}
+            image={BASE_URL + IMAGE}
             script={{
               "type": "application/ld+json",
               "innerHTML": `{
