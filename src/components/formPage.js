@@ -35,8 +35,8 @@ const emailSignupStyles = {
   title: {
     margin: 0,
     marginBottom: '.5em',
-    textAlign: 'center',
     fontSize: '1.5em !important',
+    textAlign: 'center',
     [presets.Mobile]: {
       fontSize: "2em !important",
     }  
@@ -45,8 +45,9 @@ const emailSignupStyles = {
     textAlign: 'center',
     margin: '0 !important', 
     marginBottom: '1em !important', 
-    fontSize: '.7em',
-    lineHeight: '.7em',
+    fontSize: '1.2em !important',
+    lineHeight: '1em !important',
+    width: '90%',
     [presets.Mobile]: {
       fontSize: "1.5em !important",
     }

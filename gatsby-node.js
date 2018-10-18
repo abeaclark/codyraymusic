@@ -12,6 +12,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
     const pages = []
     const linkPageTemplate = path.resolve("./src/templates/linkPage.js")
     const formPageTemplate = path.resolve("./src/templates/formPage.js")
+    const linkTreeTemplate = path.resolve("./src/templates/linkTreePage.js")
     resolve(
       graphql(
         `{
@@ -35,9 +36,17 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
 
         // Create link pages.
         _.each(result.data.allMarkdownRemark.edges, edge => {
+          let component = formPageTemplate
+          if (edge.node.fields.fileType === 'linkPages') {
+            component = linkPageTemplate
+          }
+          if (edge.node.fields.fileType === 'linkTrees') {
+            component = linkTreeTemplate
+          }
+          console.log(component)
           createPage({
             path: edge.node.fields.path,
-            component: edge.node.fields.fileType === 'linkPages' ? linkPageTemplate : formPageTemplate,
+            component: component,
             context: {
               fileType: edge.node.fields.fileType,
             },
@@ -50,6 +59,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
 
 exports.onCreateNode = ({ node, boundActionCreators, getNode }) => {
   const { createNodeField } = boundActionCreators
+  console.log(node)
   if (
     node.internal.type === `MarkdownRemark` &&
     getNode(node.parent).internal.type === `File`
