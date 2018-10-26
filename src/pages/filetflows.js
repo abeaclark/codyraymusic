@@ -65,6 +65,12 @@ class FiletFlows extends React.Component {
           >
             Listen to the Playlist
           </Button>
+          <Button
+            onClick={() => window.location = 'https://www.filetflows.com'}
+            style={{ border: `3px solid ${colors.green}`, backgroundColor: 'white', color: colors.green, width: '80%', maxWidth: '350px'}}
+          >
+            Artist Song Submission
+          </Button>
         </div>
       </div>
     )
